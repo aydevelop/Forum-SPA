@@ -1,7 +1,9 @@
 <template>
   <div>
     <toolbar />
-    <nuxt />
+    <div class="default-nuxt-layout">
+      <nuxt />
+    </div>
     <app-footer />
   </div>
 </template>
@@ -21,3 +23,10 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.default-nuxt-layout{
+  margin-top:70px;
+  margin-bottom: 120px; 
+}
+</style>
