@@ -1,25 +1,22 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <h1>Hello</h1>
-      </div>
-    </v-flex>
-  </v-layout>
+  <div>
+    <toolbar />
+    <app-home />
+    <app-footer />
+  </div>
 </template>
 
 <script>
-//import Logo from '~/components/Logo.vue'
 
+import AppHome from '@/components/AppHome.vue'
+import Toolbar from '@/components/Toolbar.vue'
+import AppFooter from '@/components/AppFooter.vue'
 export default {
-  components: {}
+  components: {
+    AppHome,
+    Toolbar,
+    AppFooter
+  }
 }
+
 </script>
