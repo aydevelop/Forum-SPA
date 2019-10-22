@@ -1,7 +1,7 @@
 <template>
   <div>
     <toolbar />
-    <app-home />
+    <login></login>
     <app-footer />
   </div>
 </template>
@@ -11,11 +11,14 @@
 import AppHome from '@/components/AppHome.vue'
 import Toolbar from '@/components/Toolbar.vue'
 import AppFooter from '@/components/AppFooter.vue'
+import Login from '@/components/login/Login'
+
 export default {
   components: {
     AppHome,
     Toolbar,
-    AppFooter
+    AppFooter,
+    Login
   }
 }
 
