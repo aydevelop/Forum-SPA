@@ -9,7 +9,7 @@
         <v-btn text>Forum</v-btn>
         <v-btn text>Ask Question</v-btn>
         <v-btn text>Category</v-btn>
-        <v-btn text>Login</v-btn>
+        <v-btn text to="/login" nuxt>Login</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>
