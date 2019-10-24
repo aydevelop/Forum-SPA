@@ -33,12 +33,8 @@ export default {
         }
     },
     methods:{
-        async login(){
-            try {
-                let data = await this.$axios.$post('auth/login', this.form);
-            }catch(e){
-                console.log("errrrrrror: " + JSON.stringify(e.response));
-            }
+        login(){
+            User.login(this)
         }
     }
 }
