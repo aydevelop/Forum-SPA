@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <h2>Login</h2>
     <v-form @submit.prevent="login">
         <v-text-field
         label="E-mail"
@@ -14,8 +15,12 @@
         required
         ></v-text-field>
 
-        <v-btn color="green" type="submit">
+        <v-btn  type="submit">
             Login
+        </v-btn>
+
+        <v-btn to="/signup" nuxt>
+            Sign UP
         </v-btn>
 
     </v-form>
