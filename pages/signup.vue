@@ -61,8 +61,16 @@ export default {
     methods:{
         signup(){
             this.$axios.$post('auth/signup', this.form)
-            .then(res => User.responseAfterLogin(res))
+            .then(res => {
+                User.responseAfterLogin(res)
+                this.$router.push('forum')
+            })
             .catch(error => this.errors = error.response.data.errors)
+        }
+    },
+    created(){
+        if(User.loggedIn()){
+            this.$router.push('forum')
         }
     }
 }

@@ -4,7 +4,7 @@ import AppStorage from '~/Helpers/AppStorage'
 class User {
     login({ $axios, form}){
 
-        $axios.$post('auth/login', form)
+        return $axios.$post('auth/login', form)
             .then(res => this.responseAfterLogin(res))
             .catch(error => console.log(JSON.stringify(error)))
     }
@@ -20,6 +20,7 @@ class User {
         }else{
             console.log("token not valid");
         }
+
     }
 
     hasToken(){
@@ -35,7 +36,9 @@ class User {
     }
 
     logout(){
+        console.log("logout")
         AppStorage.clear()
+        window.location = '/forum'
     }
 
     name(){

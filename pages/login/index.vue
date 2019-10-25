@@ -39,7 +39,14 @@ export default {
     },
     methods:{
         login(){
-            User.login(this)
+            User.login(this).
+            then(res => this.$router.push('forum') )
+        }
+    },
+    created(){
+        console.log("created")
+        if(User.loggedIn()){
+            this.$router.push('forum')
         }
     }
 }
