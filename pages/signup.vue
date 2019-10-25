@@ -8,7 +8,7 @@
         type="text"
         required
         ></v-text-field>
-        <div class="red--text" v-if="errors.name"> {{ errors.name[0] }} </div>
+        <div class="red--text errors" v-if="errors.name"> {{ errors.name[0] }} </div>
 
         <v-text-field
         label="E-mail"
@@ -16,7 +16,7 @@
         type="email"
         required
         ></v-text-field>
-        <div class="red--text" v-if="errors.email"> {{ errors.email[0] }} </div>
+        <div class="red--text errors" v-if="errors.email"> {{ errors.email[0] }} </div>
 
         <v-text-field
         label="Password"
@@ -24,7 +24,16 @@
         type="password"
         required
         ></v-text-field>
-        <div class="red--text" v-if="errors.password"> {{ errors.password[0] }} </div>
+        <div class="red--text errors" v-if="errors.password"> {{ errors.password[0] }} </div>
+
+        <v-text-field
+        label="Password confirm"
+        v-model="form.password_confirmation"
+        type="password"
+        required
+        ></v-text-field>
+        <div class="red--text errors" v-if="errors.password"> {{ errors.password[0] }} </div>
+
 
         <v-btn type="submit">
             Sign up
@@ -59,6 +68,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>

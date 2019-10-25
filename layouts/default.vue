@@ -1,10 +1,12 @@
 <template>
   <div>
-    <toolbar />
-    <div class="default-nuxt-layout">
-      <nuxt />
-    </div>
-    <app-footer />
+    <v-app :dark="false">
+      <toolbar />
+      <div class="default-nuxt-layout">
+        <nuxt />
+      </div>
+      <app-footer />
+    </v-app>
   </div>
 </template>
 

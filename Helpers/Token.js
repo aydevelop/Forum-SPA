@@ -1,9 +1,17 @@
 class Token{
 
     isValid(token){
-        const payload = this.payload(token);
+        const payload = this.payload(token)
+
+        let host1 = "http://vl.test/api/auth/signup"
+        let host2 = "http://vl.test/api/auth/login"
+
         if(payload){
-            return payload.iss == "http://vl.test/api/auth/login" ? true : false
+            
+            if(payload.iss==host1) { return true; }
+            if(payload.iss==host2) { return true; }
+
+            return false
         }
 
         return false
