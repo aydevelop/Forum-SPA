@@ -17,7 +17,6 @@
 
       </v-toolbar-items>
     </v-toolbar>
-    <h1>{{ UserLoggedIn }}</h1>
   </div>
 </template>
 
