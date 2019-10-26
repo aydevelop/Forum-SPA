@@ -3,9 +3,9 @@
   <v-container fluid grid-list-md>
     <v-layout >
       <v-flex xs9>
-          <question v-for="q in questions" 
+          <question v-for="(q, index) in questions" 
           :question=q
-          :key="q.path" >
+          :key="q.path+'_'+index" >
           </question>
       </v-flex>
 
