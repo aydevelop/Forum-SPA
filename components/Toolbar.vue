@@ -17,6 +17,7 @@
 
       </v-toolbar-items>
     </v-toolbar>
+    <h1>{{ UserLoggedIn }}</h1>
   </div>
 </template>
 
@@ -38,6 +39,9 @@ export default {
   computed: {
     reversedItems: function () {
       return this.items.filter(q => q.show == User.loggedIn());
+    },
+    UserLoggedIn(){
+      return User.loggedIn();
     }
   },
   created(){

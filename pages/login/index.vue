@@ -38,9 +38,9 @@ export default {
         }
     },
     methods:{
-        login(){
-            User.login(this).
-            then(res => this.$router.push('forum') )
+        async login(){
+            await User.login(this)
+            window.location = '/forum'
         }
     },
     created(){
