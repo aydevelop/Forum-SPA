@@ -1,26 +1,24 @@
 <template>
         <v-card>
-            
             <v-container>
-            <v-card-title>
-                <div>
-                    <div class="headline">
-                        {{ data.title }}
-                    </div>
-                    <div class="grey--text subtitle">
-                        {{ data.user }} said {{data.created_at}}
-                    </div>
-                </div>   
-            
-                
+                <v-card-title>
+                    <div>
+                        <div class="headline">
+                            {{ data.title }}
+                        </div>
+                        <div class="grey--text subtitle">
+                            {{ data.user }} said {{data.created_at}}
+                        </div>
+                    </div>   
+                    <v-spacer></v-spacer>
+                    <v-btn color="teal">
+                        5 Replies
+                    </v-btn>
+                </v-card-title>
 
-                <v-spacer></v-spacer>
-                <v-btn color="teal">
-                    5 Replies
-                </v-btn>
-            
-            </v-card-title>
-            
+                <v-card-text v-html="data.body" >
+
+                </v-card-text>
             </v-container>
         </v-card>
 </template>
