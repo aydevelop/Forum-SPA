@@ -19,6 +19,8 @@
           autocomplete
         ></v-select>
 
+        <vue-simplemde v-model="content" ref="markdownEditor" />
+
         <v-btn color="blue" type="submit" nuxt>
             Create
         </v-btn>
@@ -27,18 +29,23 @@
 </template>>
 
 <script>
+import VueSimplemde from 'vue-simplemde'
 export default {
     data:()=>({
         form:{
             title: 123,
             category_id: null
         },
-        categories: {}
+        categories: {},
+        content:"123"
     }),
     mathods: {
         create(){
             
         }
+    },
+    components: {
+      VueSimplemde
     },
     async asyncData({$axios, params}){
       let {data} = await $axios.$get('category');
@@ -47,5 +54,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+  @import '~/node_modules/simplemde/dist/simplemde.min.css';
 </style>
