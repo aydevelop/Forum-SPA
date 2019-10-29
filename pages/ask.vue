@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <h2>Sign up</h2>
     <v-form @submit.prevent="askCreate">
 
         <v-text-field
