@@ -1,17 +1,24 @@
 <template>
-    <show-question
-        :data = question
-    >
-    </show-question>
+    <div>
+        <edit-question v-if="editing" :data = question >
+        </edit-question>
+
+        <div v-else>
+            <show-question :data = question >
+            </show-question>
+        </div>
+    </div>
 </template>
 
 <script>
 
 import ShowQuestion from '~/components/ShowQuestion.vue'
+import EditQuestion from '~/components/EditQuestion.vue'
+
 export default {
     data(){
         return {
-
+            editing: false
         }
     },
     async asyncData({$axios, params}){
@@ -20,9 +27,13 @@ export default {
       return {question:data}
     },
     components:{
-        ShowQuestion
+        ShowQuestion,
+        EditQuestion
     },
     mounted(){
+        EventBus.$on('startEditing',()=>{
+            this.editing = true;
+        })
     }
 }
 </script>

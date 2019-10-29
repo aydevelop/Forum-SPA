@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h2>Sign up</h2>
-    <v-form @submit.prevent="create">
+    <v-form @submit.prevent="askCreate">
 
         <v-text-field
         label="Title"
@@ -19,7 +19,7 @@
           autocomplete
         ></v-select>
 
-        <vue-simplemde v-model="content" ref="markdownEditor" />
+        <vue-simplemde v-model="form.body" ref="markdownEditor" />
 
         <v-btn color="blue" type="submit" nuxt>
             Create
@@ -34,15 +34,24 @@ export default {
     data:()=>({
         form:{
             title: 123,
-            category_id: null
+            category_id: "",
+            body: ""
         },
         categories: {},
-        content:"123"
+        content:"123",
+        errors:{}
     }),
-    mathods: {
-        create(){
-            
+    methods: {
+      async askCreate() {
+
+        try{
+            let data = await this.$axios.$post('question', this.form)
+            console.log(data.path);
+            this.$router.push(data.path)
+        }catch (error) {
+          console.log(error.response.data.errors)
         }
+      }
     },
     components: {
       VueSimplemde
@@ -56,4 +65,8 @@ export default {
 
 <style>
   @import '~/node_modules/simplemde/dist/simplemde.min.css';
+
+  .editor-toolbar{
+    background-color: white;
+  }
 </style>

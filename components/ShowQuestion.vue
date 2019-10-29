@@ -16,18 +16,41 @@
                     </v-btn>
                 </v-card-title>
 
-                <v-card-text v-html="data.body" >
-
+                <v-card-text v-html="body" >
                 </v-card-text>
+
+                <v-card-actions v-if="own">
+                    <v-btn icon small @click="edit"><v-icon>mdi-pencil</v-icon></v-btn>
+                    <v-btn icon small @click="deleteItem"><v-icon>mdi-delete</v-icon></v-btn>
+                </v-card-actions>
             </v-container>
         </v-card>
 </template>
 
 <script>
-
+import md from 'marked'
 export default {
   props:['data'],
+  data(){
+      return{
+          own: User.own(this.data.user_id)
+      }
+  },
   mounted(){
+  },
+  computed:{
+      body(){
+          return md.parse(this.data.body)
+      }
+  },
+  methods:{
+      deleteItem(){
+          this.$axios.$delete('question/' + this.data.slug)
+          this.$router.push('/forum')
+      },
+      edit(){
+          EventBus.$emit('startEditing')
+      }
   }
 }
 
