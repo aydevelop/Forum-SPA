@@ -1,3 +1,4 @@
+import AppStorage from '~/Helpers/AppStorage'
 export default function ({ $axios, redirect, store }) {
 
   $axios.interceptors.request.use(request => {
@@ -13,6 +14,7 @@ export default function ({ $axios, redirect, store }) {
   $axios.onError(error => {
     if (error.response) {
       if (error.response.status === 401) {
+        AppStorage.clear()
         redirect('/login')
       }
 

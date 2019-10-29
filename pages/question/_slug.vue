@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <edit-question v-if="editing" :data = question >
+    <div v-if="question">
+        <edit-question v-if="editing" :question.sync="question" :data = question >
         </edit-question>
 
         <div v-else>
@@ -24,6 +24,7 @@ export default {
     async asyncData({$axios, params}){
       console.log("slug____" + params.slug)
       let {data} = await $axios.$get('question/'+params.slug);
+      console.log('stringify ' + JSON.stringify(data))
       return {question:data}
     },
     components:{
@@ -32,7 +33,11 @@ export default {
     },
     mounted(){
         EventBus.$on('startEditing',()=>{
-            this.editing = true;
+            this.editing = true
+        })
+
+        EventBus.$on('cancelEditing',()=>{
+            this.editing = false
         })
     }
 }

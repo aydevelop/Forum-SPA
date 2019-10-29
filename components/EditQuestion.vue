@@ -11,8 +11,12 @@
 
             <vue-simplemde v-model="form.body" ref="markdownEditor" />
 
-            <v-btn color="blue" type="submit" nuxt>
-                Edit
+            <v-btn icon small @click="update">
+                <v-icon>mdi-content-save</v-icon>
+            </v-btn>
+
+            <v-btn icon small class="cancel-btn" @click="cancel" >
+                <v-icon>mdi-cancel</v-icon>
             </v-btn>
 
         </v-form>
@@ -22,15 +26,30 @@
 <script>
     import VueSimplemde from 'vue-simplemde'
     export default {
+        props:['data'],
         data: () => ({
             form: {
-                title: null,
-                body: null
+                title: "",
+                body: "",
+                slug: ""
             }
         }),
         components: {
             VueSimplemde
         },
+        mounted(){
+            this.form = {...this.data};
+        },
+        methods:{
+            cancel(){
+                EventBus.$emit('cancelEditing')
+            },
+            async update(){
+                await this.$axios.$patch(`question/${this.form.slug}`, this.form)
+                this.$emit('update:question', this.form)
+                this.cancel()
+            }
+        }
     }
 </script>
 
@@ -39,5 +58,9 @@
 
   .editor-toolbar{
     background-color: white;
+  }
+
+  .cancel-btn{
+      margin-left: 10px;
   }
 </style>

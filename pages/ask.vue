@@ -32,7 +32,7 @@ import VueSimplemde from 'vue-simplemde'
 export default {
     data:()=>({
         form:{
-            title: 123,
+            title: "",
             category_id: "",
             body: ""
         },
