@@ -10,4 +10,15 @@ export default function ({ $axios, redirect, store }) {
     return request
   })
 
+  $axios.onError(error => {
+    if (error.response) {
+      if (error.response.status === 401) {
+        redirect('/login')
+      }
+
+      if (error.response.status === 500) {
+        console.error('Server 500 error')
+      }
+    }
+  })
 }
