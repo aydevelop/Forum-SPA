@@ -10,7 +10,7 @@
       </v-flex>
 
        <v-flex xs3>
-          sidebar
+            <app-side-bar />
        </v-flex>
 
     </v-layout>
@@ -20,6 +20,7 @@
 
 <script>
 import Question from '~/components/Question.vue'
+import AppSideBar from '~/components/AppSideBar.vue'
 
 export default {
   data(){
@@ -27,7 +28,7 @@ export default {
       questions: []
     }
   },
-  components: {Question},
+  components: {Question,AppSideBar},
   async created(){
     let {data} = await this.$axios.$get('question')
     this.questions = data;
