@@ -18,8 +18,8 @@
         </v-toolbar>
 
         <v-list>
-            <div v-for="category in categories" 
-                :key="category.name">
+            <div v-for="(category,index) in categories" 
+                :key="index">
                 <v-list-item>
                     <v-list-item-action>
                         <v-btn icon small>
@@ -28,13 +28,11 @@
                     </v-list-item-action>
 
                     <v-list-item-content>
-                        <v-list-item-content>
-                            {{ category.name }}
-                        </v-list-item-content>
+                        {{ category.name }}
                     </v-list-item-content>
                     
                     <v-list-item-action>
-                        <v-btn icon small>
+                        <v-btn icon small @click="destroyCategory(category.slug,index)">
                             <v-icon>mdi-delete</v-icon>
                         </v-btn>
                     </v-list-item-action>
@@ -49,16 +47,28 @@
 
 <script>
     export default {
-        data: ()=>({
-            form:{
-                name:""
-            },
-            categories: {}
-        }),
+        data(){
+            return {
+                form:{
+                    name:""
+                },
+                categories: {}
+            }
+        },
         methods:{
             async createCategory(){
-                let {data} = await this.$axios.$post('category', this.form)
-                console.log(JSON.stringify())
+
+                // if(!User.admin()){
+                //     this.$router.push('/forum')
+                // }
+
+                let data = await this.$axios.$post('category', this.form)
+                this.categories.unshift(data)
+                this.form.name = ""
+            },
+            async destroyCategory(slug,index){
+                await this.$axios.$delete(`category/${slug}`)
+                this.categories.splice(index,1)
             }
         },
         async mounted(){
