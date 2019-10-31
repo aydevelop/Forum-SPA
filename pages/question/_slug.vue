@@ -7,6 +7,12 @@
             <show-question :data = question >
             </show-question>
         </div>
+
+        <replies :qSlug="question.slug" :replies=question.replies ></replies>
+
+        <v-container>
+            <new-reply :qSlug="question.slug"></new-reply>
+        </v-container>
     </div>
 </template>
 
@@ -14,6 +20,8 @@
 
 import ShowQuestion from '~/components/ShowQuestion.vue'
 import EditQuestion from '~/components/EditQuestion.vue'
+import Replies from '~/components/Reply.vue'
+import NewReply from '~/components/NewReply.vue'
 
 export default {
     data(){
@@ -29,8 +37,10 @@ export default {
     },
     components:{
         ShowQuestion,
-        EditQuestion
-    },
+        EditQuestion,
+        Replies,
+        NewReply
+    }, 
     mounted(){
         EventBus.$on('startEditing',()=>{
             this.editing = true
@@ -38,6 +48,10 @@ export default {
 
         EventBus.$on('cancelEditing',()=>{
             this.editing = false
+        })
+
+        EventBus.$on('newReply',(reply)=>{
+            this.question.replies.push(reply.reply)
         })
     }
 }

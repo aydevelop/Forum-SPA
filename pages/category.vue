@@ -7,7 +7,8 @@
         required
         ></v-text-field>
 
-        <v-btn @click="createCategory" color="blue">Create</v-btn>
+        <v-btn @click="createCategory" v-if="!editSlug" color="blue">Create</v-btn>
+        <v-btn @click="createCategory" v-else color="green">Update</v-btn>
     </v-form>
 
     <v-card class="mt-10">
@@ -22,7 +23,7 @@
                 :key="index">
                 <v-list-item>
                     <v-list-item-action>
-                        <v-btn icon small>
+                        <v-btn icon small @click="edit(index)" >
                             <v-icon>mdi-pencil</v-icon>
                         </v-btn>
                     </v-list-item-action>
@@ -52,19 +53,32 @@
                 form:{
                     name:""
                 },
-                categories: {}
+                categories: {},
+                editSlug: null
             }
         },
         methods:{
+            edit(index){
+                this.form.name = this.categories[index].name
+                this.editSlug = this.categories[index].slug
+                this.categories.splice(index,1)
+            },
+            async updateCategory(){
+                let data = await this.$axios
+                .$patch('category/'+this.editSlug, this.form)
+                this.categories.unshift(data)
+                this.editSlug = null
+                this.form.name = ""
+            },
             async createCategory(){
 
-                // if(!User.admin()){
-                //     this.$router.push('/forum')
-                // }
-
-                let data = await this.$axios.$post('category', this.form)
-                this.categories.unshift(data)
-                this.form.name = ""
+                if(this.editSlug){
+                    this.updateCategory();
+                }else{
+                    let data = await this.$axios.$post('category', this.form)
+                    this.categories.unshift(data)
+                    this.form.name = ""
+                }
             },
             async destroyCategory(slug,index){
                 await this.$axios.$delete(`category/${slug}`)
