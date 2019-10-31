@@ -8,7 +8,7 @@
        </v-flex>
 
        
-      <v-flex xs9>
+      <v-flex class="custom" xs9>
           <question v-for="(q, index) in questions" 
           :question=q
           :key="q.path+'_'+index" >
@@ -40,5 +40,9 @@ export default {
 </script>
 
 <style>
-
+.custom a{
+  color: white;
+  text-decoration: none;
+  border-bottom: 2px solid #00BCD4;
+}
 </style> 

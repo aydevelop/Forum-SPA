@@ -6,6 +6,8 @@
                     <div class="custom">
                         {{ reply.user }}  said  {{ reply.created_at }}
                     </div>
+                    <v-spacer></v-spacer>
+                    <like :reply = reply></like>
                 </v-card-title>
                 <v-divider></v-divider>
                 <div v-if="editId!=reply.id">
@@ -33,6 +35,7 @@
 <script>
     import VueSimplemde from 'vue-simplemde'
     import EditReply from '~/components/EditReply.vue'
+    import Like from '~/components/Like.vue'
 
     import md from 'marked'
     export default {
@@ -42,7 +45,8 @@
         }),
         components:{
             EditReply,
-            VueSimplemde
+            VueSimplemde,
+            Like
         },
         computed: {
             UserId(){

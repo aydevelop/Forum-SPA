@@ -11,8 +11,8 @@
                         </div>
                     </div>   
                     <v-spacer></v-spacer>
-                    <v-btn color="teal">
-                        5 Replies
+                    <v-btn color="#00BCD4">
+                        {{data.replies.length}} Replies
                     </v-btn>
                 </v-card-title>
 
