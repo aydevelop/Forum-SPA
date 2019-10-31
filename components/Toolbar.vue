@@ -1,9 +1,13 @@
 <template>
     <div>
     <v-toolbar>
-      <v-toolbar-title>T38237</v-toolbar-title>
-    
+      <v-toolbar-title>
+        <nuxt-link class="custom-a" to="/" >
+          T38237
+        </nuxt-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
+      <app-notification v-if="UserLoggedIn" ></app-notification>
 
       <v-toolbar-items>
 
@@ -21,7 +25,7 @@
 </template>
 
 <script>
-//import Logo from '~/components/Logo.vue'
+import AppNotification from '~/components/AppNotification.vue'
 
 export default {
   data(){
@@ -47,6 +51,14 @@ export default {
       EventBus.$on('logout', ()=>{
         User.logout();
       })
-  }
+  },
+  components:{AppNotification}
 }
 </script>
+
+<style scoped>
+.custom-a{
+  color:white;
+  text-decoration: none;
+}
+</style>
