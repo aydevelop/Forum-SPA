@@ -39,6 +39,12 @@
                     this.count --
                 }
             }
+        },
+        created(){
+            this.$echo.channel('likeChannel')
+                .listen('LikeEvent', (e) => {
+                    console.log('LikeEventLikeEventLikeEventLikeEventLikeEventLikeEvent');
+                });
         }
     }
 </script>
