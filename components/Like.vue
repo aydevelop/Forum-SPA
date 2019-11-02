@@ -1,7 +1,7 @@
 <template>
     <div class='name'>
         <v-btn icon @click="likeIt" >
-            <v-icon :color="likeColor" >mdi-thumb-up-outline</v-icon> {{ count }}
+            <v-icon :color="likeColor" >mdi-thumb-up-outline</v-icon> <div class="ml-1"> {{ count }} </div>
         </v-btn>
     </div>
 </template>

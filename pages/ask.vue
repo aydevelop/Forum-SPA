@@ -20,7 +20,9 @@
 
         <vue-simplemde v-model="form.body" ref="markdownEditor" />
 
-        <v-btn color="blue" type="submit" nuxt>
+        <v-btn
+        :disabled="!(form.title && form.body && form.category_id)"
+        color="blue" type="submit" nuxt>
             Create
         </v-btn>
     </v-form>

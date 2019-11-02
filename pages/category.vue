@@ -7,8 +7,8 @@
         required
         ></v-text-field>
 
-        <v-btn @click="createCategory" v-if="!editSlug" color="blue">Create</v-btn>
-        <v-btn @click="createCategory" v-else color="green">Update</v-btn>
+        <v-btn @click="createCategory" :disabled="disabled" v-if="!editSlug" color="blue">Create</v-btn>
+        <v-btn @click="createCategory" :disabled="disabled" v-else color="green">Update</v-btn>
     </v-form>
 
     <v-card class="mt-10">
@@ -88,6 +88,11 @@
         async mounted(){
             let {data} = await this.$axios.$get('category')
             this.categories = data
+        },
+        computed:{
+            disabled(){
+                return !this.form.name  
+            }
         }
     }
 </script>

@@ -10,8 +10,13 @@
 
         <replies :qSlug="question.slug" :replies=question.replies ></replies>
 
-        <v-container>
+        <v-container v-if="UserLoggedIn">
             <new-reply :qSlug="question.slug"></new-reply>
+        </v-container>
+        <v-container class="mt-6 text-center" v-else>
+            <nuxt-link to="/login">
+                Log in to reply
+            </nuxt-link>
         </v-container>
     </div>
 </template>
@@ -41,6 +46,11 @@ export default {
         Replies,
         NewReply
     }, 
+    computed: {
+        UserLoggedIn(){
+            return User.loggedIn();
+        }
+    },
     mounted(){
         EventBus.$on('startEditing',()=>{
             this.editing = true
