@@ -41,7 +41,7 @@
             }
         },
         created(){
-            this.$echo.channel('likeChannel')
+            Echo.channel('likeChannel')
                 .listen('LikeEvent', (e) => {
                     console.log('LikeEventLikeEventLikeEventLikeEventLikeEventLikeEvent');
                 });
