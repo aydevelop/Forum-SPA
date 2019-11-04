@@ -70,6 +70,10 @@
             htmlParse(value){
                 return md.parse(value)
             }
+        },
+        created(){
+
+
         }
     }
 </script>

@@ -44,13 +44,6 @@
                         e.type == 1 ? this.count++ : this.count--
                     }
                 });
-
-            console.log("IDDD: " + 'App.User.' + User.id());
-
-            Echo.private('App.User.' + User.id())
-            .notification((notification) => {
-                console.log(notification.type + "!!!!");
-            });
         }
     }
 </script>
