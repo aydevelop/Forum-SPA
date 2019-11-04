@@ -72,8 +72,15 @@
             }
         },
         created(){
+            // Echo.private("orders")
+            // .listen('QEvent', (e) => {
+            //     console.log('QEvent');
+            // });
 
-
+            window.Echo.private('user.81')
+            .listen('PrivateEvent', (e) => {
+                console.log(e);
+            });
         }
     }
 </script>

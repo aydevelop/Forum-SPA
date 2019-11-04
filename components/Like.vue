@@ -37,6 +37,7 @@
             }
         },
         created(){
+            
             Echo.channel('likeChannel')
                 .listen('LikeEvent', (e) => {
                     if(this.reply.id == e.id){

@@ -11,11 +11,9 @@
             </template>
             <v-list>
                 <v-list-item v-for="item in unread" :key="item.id">
-                        <nuxt-link :to="`/${item.data.path}`" >
                             <v-list-item-title @click="readIt(item)">
                                 {{ item.data.question }}
                             </v-list-item-title>
-                        </nuxt-link>
                 </v-list-item>
             </v-list>
 <!-- 
@@ -47,8 +45,8 @@
         },
         methods:{
            async readIt(item){
+                console.log('test1')
                 await this.$axios.$post('markAsRead', {id:item.id})
-                //this.unread.splice(Notification)
             }
         },
         computed:{
