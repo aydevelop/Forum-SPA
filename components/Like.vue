@@ -19,7 +19,7 @@
         },
         computed:{
             likeColor(){
-                return this.liked ? "green" : "#00BCD4"
+                return this.liked ? "green" : "blue-grey darken-1"
             }
         },
         methods:{
@@ -31,20 +31,26 @@
             },
             incr(){
                 this.$axios.$post(`like/${this.reply.id}`)
-                this.count ++ 
             },
             decr(){
                 this.$axios.$delete(`like/${this.reply.id}`)
-                if(this.count>0){
-                    this.count --
-                }
             }
         },
         created(){
             Echo.channel('likeChannel')
                 .listen('LikeEvent', (e) => {
-                    console.log('LikeEventLikeEventLikeEventLikeEventLikeEventLikeEvent');
+                    if(this.reply.id == e.id){
+                        console.log('like')
+                        e.type == 1 ? this.count++ : this.count--
+                    }
                 });
+
+            console.log("IDDD: " + 'App.User.' + User.id());
+
+            Echo.private('App.User.' + User.id())
+            .notification((notification) => {
+                console.log(notification.type + "!!!!");
+            });
         }
     }
 </script>
