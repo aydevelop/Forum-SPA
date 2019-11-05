@@ -6,7 +6,6 @@ class User {
 
         return $axios.$post('auth/login', form)
             .then(res => this.responseAfterLogin(res))
-            .catch(error => console.log(JSON.stringify(error)))
     }
 
     responseAfterLogin(res){

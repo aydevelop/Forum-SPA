@@ -30,6 +30,7 @@ import AppNotification from '~/components/AppNotification.vue'
 export default {
   data(){
     return {
+      dUserLoggedIn: false,
       items: [
         { title:'Forum', to:'/forum', show: true },
         { title:'Login', to:'/login', show: false },
@@ -41,15 +42,23 @@ export default {
   },
   computed: {
     reversedItems: function () {
-      return this.items.filter(q => q.show == User.loggedIn());
-    },
+      return this.items.filter(q => q.show == this.dUserLoggedIn)
+    }
+  },
+  methods:{
     UserLoggedIn(){
-      return User.loggedIn();
+      this.dUserLoggedIn = User.loggedIn();
     }
   },
   created(){
+      this.UserLoggedIn()
+      
       EventBus.$on('logout', ()=>{
         User.logout();
+      })
+
+      EventBus.$on('login', ()=>{
+        this.UserLoggedIn()
       })
   },
   components:{AppNotification}

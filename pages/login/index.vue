@@ -23,6 +23,7 @@
             Sign UP
         </v-btn>
 
+        <div class="mt-4 red--text errors" v-if="error"> {{ error }} </div>
     </v-form>
   </v-container>
 </template>>
@@ -31,6 +32,7 @@
 export default {
     data(){
         return{
+            error: "",
             form: {
                 email: "",
                 password: ""
@@ -39,8 +41,15 @@ export default {
     },
     methods:{
         async login(){
-            await User.login(this)
-            window.location = '/forum'
+            try {
+                await User.login(this)
+                //this.$refs.usernameInput.$forceUpdate()
+                EventBus.$emit('login')
+                this.$router.push('forum')
+                //window.location = '/forum'
+            } catch (e) {
+                this.error = "Incorrect login or password";
+            }
         }
     },
     created(){

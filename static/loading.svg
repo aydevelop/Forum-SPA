@@ -1,0 +1,27 @@
+<svg class="loader" width="120" height="120" viewbox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <style>
+    path {
+      transform-origin: center center;
+      fill: none;
+      stroke: #98A7B6;
+      stroke-width: 10;
+      stroke-dasharray: 250;
+      stroke-dashoffset: 500;
+      stroke-linecap: round;
+      animation: start 1s both, load 2s 1.6s ease-in infinite, spin 2.6s 1s ease-in-out infinite;
+      -webkit-animation: start 1s both, load 2s 1.6s ease-in infinite, spin 2.6s 1s ease-in-out infinite;
+    }
+    @keyframes start {
+      from { transform: scale(0); opacity: 1; }
+      30% { transform: scale(1.2); }
+      70% { transform: scale(1); }
+    }
+    @keyframes load {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes spin {
+      to { transform: rotate(-1turn); }
+    }
+  </style>
+  <path d="M 60, 60 m -45, 0 a 45,45 0 1,0 90,0 a 45,45 0 1,0 -90,0" />
+</svg>

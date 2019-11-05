@@ -3,12 +3,14 @@
     <v-flex xs10 offset-xs1>
       <v-card>
         <v-card-title primary-title>
-          <div>
+          <div>            
             <h3 class="headline mb-0"><nuxt-link :to="question.path">{{ question.title }}</nuxt-link></h3>
             <div class="grey--text">
               {{ question.user }} said {{ question.created_at }}
             </div>
           </div>
+           <v-spacer></v-spacer>
+           <div class="custom"> {{ question.category }} </div>
         </v-card-title>
         <v-card-text>
             {{ question.body }}
@@ -27,6 +29,10 @@
 
 </script>
 
-<style>
+<style scoped>
+
+.custom{
+  font-size: 1rem
+}
 
 </style>

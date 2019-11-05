@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app :dark="false">
-      <toolbar />
+      <toolbar ref="usernameInput" />
       <div class="default-nuxt-layout">
         <nuxt />
       </div>
