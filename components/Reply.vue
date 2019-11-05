@@ -77,10 +77,12 @@
             //     console.log('QEvent');
             // });
 
-            window.Echo.private('user.81')
-            .listen('PrivateEvent', (e) => {
-                console.log(e);
-            });
+            // window.Echo.private('user.81')
+            // .listen('PrivateEvent', (e) => {
+            //     console.log(e);
+            // });
+
+            
         }
     }
 </script>

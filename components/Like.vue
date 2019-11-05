@@ -41,8 +41,18 @@
             Echo.channel('likeChannel')
                 .listen('LikeEvent', (e) => {
                     if(this.reply.id == e.id){
-                        console.log('like')
-                        e.type == 1 ? this.count++ : this.count--
+                        {
+                            e.type == 1 ? this.count++ : this.count--
+
+                           
+                            if(this.reply.user_id==User.id()){
+                                if(e.type == 1){   
+                                     this.liked = true
+                                }else{
+                                     this.liked = false
+                                }
+                            }
+                        }
                     }
                 });
         }

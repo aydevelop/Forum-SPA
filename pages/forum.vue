@@ -17,7 +17,7 @@
           </template>
           <div v-else class="text-center mt-10">
                 <div v-if="showLoading">
-                   <img src="/loading.svg">
+                   <img class="loading_img" src="/loading.svg">
                 </div>
                 <div v-else>
                   Nothing found
@@ -74,5 +74,9 @@ export default {
   color: white;
   text-decoration: none;
   border-bottom: 2px solid #00BCD4;
+}
+
+.loading_img{
+  width: 70px;
 }
 </style> 

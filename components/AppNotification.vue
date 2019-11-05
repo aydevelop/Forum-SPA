@@ -10,8 +10,8 @@
                 
             </template>
             <v-list>
-                <v-list-item v-for="item in unread" :key="item.id">
-                            <v-list-item-title @click="readIt(item)">
+                <v-list-item v-for="(item, index) in unread" :key="item.data.question + index">
+                            <v-list-item-title @click="readIt(item,index)">
                                 {{ item.data.question }}
                             </v-list-item-title>
                 </v-list-item>
@@ -35,7 +35,7 @@
         }),
         async created(){
             if(User.loggedIn()){
-                let data = await this.$axios.$post('notifications')
+                let data = await this.$axios.$get('notifications')
                 this.read = data.read
                 this.unread = data.unRead
                 if(this.unread){
@@ -44,15 +44,30 @@
             }
         },
         methods:{
-           async readIt(item){
-                console.log('test1')
-                await this.$axios.$post('markAsRead', {id:item.id})
+           async readIt(item, index){
+                await this.$axios.$post('markAsRead', {id:item.id})                
+                console.log("path: " + item.data.path) 
+                this.unread.splice(index, 1);
+                this.unreadCount = this.unread.length
+                this.$router.push('/' + item.data.path)
             }
         },
         computed:{
             rColor(){
                 return this.unreadCount > 0 ? "pink" : "blue-grey darken-1" 
             }
+        },
+        mounted() {
+            Echo.channel('qChannel')
+                .listen('QEvent', (e) => {                    
+                    console.log('QEvent1')
+                    if(e.data.user_id == User.id()){
+                        console.log('QEvent2')
+                        //console.log(JSON.stringify(e.data.question))
+                        this.unread.unshift({'data': {'question': e.data.question.title, 'path': 'question/' + e.data.question.title}})
+                        this.unreadCount = this.unread.length                           
+                    }
+                });
         }
     }
 </script>

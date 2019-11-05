@@ -35,9 +35,9 @@ export default {
         }
     },
     async asyncData({$axios, params}){
-      console.log("slug____" + params.slug)
+      //console.log("slug____" + params.slug)
       let {data} = await $axios.$get('question/'+params.slug);
-      console.log('stringify ' + JSON.stringify(data))
+      //console.log('stringify ' + JSON.stringify(data))
       return {question:data}
     },
     components:{
