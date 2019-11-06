@@ -44,8 +44,8 @@ export default {
             try {
                 await User.login(this)
                 //this.$refs.usernameInput.$forceUpdate()
-                EventBus.$emit('login')
-                this.$router.push('forum')
+               EventBus.$emit('login')
+               this.$router.push('forum')
                 //window.location = '/forum'
             } catch (e) {
                 this.error = "Incorrect login or password";

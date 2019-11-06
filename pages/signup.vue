@@ -63,6 +63,8 @@ export default {
             this.$axios.$post('auth/signup', this.form)
             .then(res => {
                 User.responseAfterLogin(res)
+                //this.$router.push('forum')
+                EventBus.$emit('login')
                 this.$router.push('forum')
             })
             .catch(error => this.errors = error.response.data.errors)

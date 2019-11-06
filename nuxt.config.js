@@ -51,7 +51,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://vl.test/api'
+    baseURL: 'http://cw80238.tmweb.ru/public/index.php/api'
   },
   /*
   ** vuetify module configuration

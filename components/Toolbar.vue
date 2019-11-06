@@ -33,10 +33,10 @@ export default {
       dUserLoggedIn: false,
       items: [
         { title:'Forum', to:'/forum', show: true },
-        { title:'Login', to:'/login', show: false },
-        { title:'Logout', to:'/logout', show: true },
         { title:'Ask Question', to:'/ask', show: true },
-        { title:'Category', to:'/category', show: true },
+        { title:'Category', to:'/category', show: true },        
+        { title:'Logout', to:'/logout', show: true },        
+        { title:'Login', to:'/login', show: false },
       ]
     }
   },

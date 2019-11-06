@@ -49,7 +49,7 @@
                 console.log("path: " + item.data.path) 
                 this.unread.splice(index, 1);
                 this.unreadCount = this.unread.length
-                this.$router.push('/' + item.data.path)
+                this.$router.push('/' + item.data.slug)
             }
         },
         computed:{
@@ -64,7 +64,9 @@
                     if(e.data.user_id == User.id()){
                         console.log('QEvent2')
                         //console.log(JSON.stringify(e.data.question))
-                        this.unread.unshift({'data': {'question': e.data.question.title, 'path': 'question/' + e.data.question.title}})
+                        this.unread.unshift({'data': {'question': e.data.question.title
+                        , 'path': 'question/' + e.data.question.title
+                        , 'slug': 'question/' + e.data.question.slug }})
                         this.unreadCount = this.unread.length                           
                     }
                 });
